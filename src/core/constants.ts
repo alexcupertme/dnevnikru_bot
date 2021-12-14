@@ -7,8 +7,14 @@ export const constants = {
 	eduGroup: 1847814077665489232,
 	telegramToken: "2110027437:AAE6iilfaKDRszMNr4gr6qqbkFjMNxAbJEk",
 	redis: {
-		host: "dnevnikru-6871.redis.dbs.scalingo.com:36251",
+		host: "dnevnikru-6871.redis.dbs.scalingo.com",
+		port: 36251,
 		password: "tmQQG67oqkExCrPrH9hp",
+	},
+	redisLocal: {
+		host: "localhost",
+		port: 6379,
+		password: "ocminog10Nog",
 	},
 	mongodb: {
 		username: "",

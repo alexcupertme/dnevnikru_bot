@@ -8,7 +8,8 @@ import { routingMiddleware } from "./core/middlewares/routingMiddleware";
 import { RedisService } from "./core/services/redis.service";
 import { MasterRoute } from "./bot/master.route";
 
-mongoose.connect("mongodb://localhost:27017/dnevnikru");
+// mongoose.connect("mongodb://localhost:27017/dnevnikru");
+console.log("Running!");
 
 const bot = BotService.getInstance();
 

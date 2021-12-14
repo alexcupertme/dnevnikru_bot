@@ -11,10 +11,10 @@ export class RedisService {
 	private static instance: RedisService;
 
 	private constructor() {
-		this.client = new Redis("rediss://:tmQQG67oqkExCrPrH9hp@dnevnikru-6871.redis.dbs.scalingo.com:36251", {
-			tls: {
-				ca: fs.readFileSync(path.resolve(__dirname, "ca.pem")),
-			},
+		this.client = new Redis(`rediss://:${constants.redisLocal.password}@${constants.redisLocal.host}:${constants.redisLocal.port}`, {
+			// tls: {
+			// 	ca: fs.readFileSync(path.resolve(__dirname, "ca.pem")),
+			// },
 		});
 		this.storage = new RedisAdapter<MyUserData>({ instance: this.client });
 	}
