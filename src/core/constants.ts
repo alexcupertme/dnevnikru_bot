@@ -7,7 +7,13 @@ export const constants = {
 	eduGroup: ***REMOVED***,
 	telegramToken: "***REMOVED***",
 	redis: {
-		host: "***REMOVED***:***REMOVED***",
+		host: "***REMOVED***",
+		port: ***REMOVED***,
+		password: "***REMOVED***",
+	},
+	redisLocal: {
+		host: "localhost",
+		port: 6379,
 		password: "***REMOVED***",
 	},
 	mongodb: {
