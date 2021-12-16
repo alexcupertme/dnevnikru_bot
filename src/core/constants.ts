@@ -12,7 +12,7 @@ export const constants = {
 		password: "tmQQG67oqkExCrPrH9hp",
 	},
 	redisLocal: {
-		host: "localhost",
+		host: "host.docker.internal",
 		port: 6379,
 		password: "ocminog10Nog",
 	},
