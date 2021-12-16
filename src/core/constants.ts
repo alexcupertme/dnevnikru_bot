@@ -12,7 +12,7 @@ export const constants = {
 		password: "***REMOVED***",
 	},
 	redisLocal: {
-		host: "localhost",
+		host: "***REMOVED***",
 		port: 6379,
 		password: "***REMOVED***",
 	},

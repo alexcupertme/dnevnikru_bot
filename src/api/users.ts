@@ -1,6 +1,6 @@
 import { TUser } from "../core/typings/response/user.type";
 import { constants } from "../core/constants";
-import { userModel } from "../core/schemas/user.schema";
+// import { userModel } from "../core/schemas/user.schema";
 import { Request } from "../core/services/request.service";
 import { Response } from "got";
 
