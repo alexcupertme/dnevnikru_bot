@@ -28,7 +28,6 @@ declare global {
 	}
 }
 
-// mongoose.connect("mongodb://localhost:27017/dnevnikru");
 console.log("Running!");
 
 const bot = BotService.getInstance();

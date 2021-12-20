@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && node ./dist/main.js"
+    "build:local": "tsc && node ./dist/main.js",
+    "build": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker-compose up",
+    "deploy": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker push vzlomed/vzlomed && DOCKER_CONTEXT=remote docker-compose stop && DOCKER_CONTEXT=remote docker-compose rm -f && DOCKER_CONTEXT=remote docker-compose pull && DOCKER_CONTEXT=remote docker-compose up -d"
   },
   "author": "",
   "license": "ISC",
@@ -13,12 +15,11 @@
     "@grammyjs/router": "^1.1.1",
     "@grammyjs/runner": "^1.0.3",
     "@satont/grammy-redis-storage": "^1.1.0",
+    "dotenv": "^10.0.0",
     "got": "^11.8.2",
     "grammy": "^1.5.0",
     "ioredis": "^4.28.2",
-    "mongoose": "^6.0.12",
-    "node-telegram-bot-api-middleware": "^0.1.3",
-    "telegraf": "^4.4.2"
+    "mongoose": "^6.0.12"
   },
   "devDependencies": {
     "@types/ioredis": "^4.28.2",
