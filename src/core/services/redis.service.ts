@@ -11,7 +11,7 @@ export class RedisService {
 	private static instance: RedisService;
 
 	private constructor() {
-		this.client = new Redis(`rediss://:${constants.redisLocal.password}@${constants.redisLocal.host}:${constants.redisLocal.port}`, {
+		this.client = new Redis(`redis://:${constants.redisLocal.password}@${constants.redisLocal.host}:${constants.redisLocal.port}`, {
 			// tls: {
 			// 	ca: fs.readFileSync(path.resolve(__dirname, "ca.pem")),
 			// },
