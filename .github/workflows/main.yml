@@ -26,4 +26,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_SECRET_KEY }}
           cipher: rsa
-          script: sh deploy.sh
+          script: sh dnevnikru_bot/deploy.sh
