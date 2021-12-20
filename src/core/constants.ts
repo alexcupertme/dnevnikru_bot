@@ -2,9 +2,9 @@ export const constants = {
 	apiUrl: "https://api.dnevnik.ru/v2.0",
 	baseUrl: "https://dnevnik.ru/",
 	loginUrl: "https://login.dnevnik.ru/login/",
-	accessToken: "***REMOVED***",
-	personId: ***REMOVED***,
-	eduGroup: ***REMOVED***,
+	accessToken: "tJAj6mELh2ZRo9WrNSatWmXxpxIjvkGf",
+	personId: 1000010493564,
+	eduGroup: 1847814077665489232,
 	telegramToken: process.env.TELEGRAM_TOKEN,
 	redis: {
 		host: process.env.REDIS_LEGACY_HOST,
