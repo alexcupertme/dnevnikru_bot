@@ -12,20 +12,21 @@ on:
   workflow_dispatch:
 defaults:
   run:
-    working-directory: ./dnevnikru_bot
+    shell: bash
+    working-directory: dnevnikru_bot
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: appleboy/ssh-action@master
       - name: log into VPS and trigger deploy script
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }} # uses secrets stored in the Secrets tab
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_SECRET_KEY }}
           cipher: rsa
-          script: cd dnevnikru_bot | sh deploy.sh
+          script: cd dnevnikru_bot && sh deploy.sh
