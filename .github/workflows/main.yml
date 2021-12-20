@@ -12,6 +12,7 @@ on:
   workflow_dispatch:
 defaults:
   run:
+    shell: bash
     working-directory: ./dnevnikru_bot
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,4 +29,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_SECRET_KEY }}
           cipher: rsa
-          script: cd dnevnikru_bot | sh deploy.sh
+          script: sh deploy.sh
