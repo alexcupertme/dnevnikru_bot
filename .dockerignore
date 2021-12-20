@@ -1,0 +1,10 @@
+/node_modules
+/src
+.gitignore
+docker-compose.yml
+Dockerfile
+mongo-init.js
+package-lock.json
+pnpm-lock.yarn
+tsconfig.json
+tsconfig.build.json
