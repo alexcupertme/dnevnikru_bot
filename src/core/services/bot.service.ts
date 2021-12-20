@@ -1,4 +1,3 @@
-import { Telegraf } from "telegraf";
 import { Context, SessionFlavor, Bot as GrammYBot, Bot } from "grammy";
 import { Router } from "@grammyjs/router";
 import { constants } from "../../core/constants";

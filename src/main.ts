@@ -1,6 +1,6 @@
+import "./config";
 import { BotService } from "./core/services/bot.service";
 import { constants } from "./core/constants";
-import mongoose from "mongoose";
 import { GrammyError, HttpError, session } from "grammy";
 import { run } from "@grammyjs/runner";
 import { accessCheckMiddleware } from "./core/middlewares/accessCheckMiddleware";
@@ -58,7 +58,7 @@ bot.catch((err) => {
 		console.error("Unknown error:", e);
 	}
 });
-// bot.use(routingMiddleware(constants.accessToken));
+bot.use(routingMiddleware(constants.accessToken));
 new MasterRoute();
 
 const runner = run(bot);
