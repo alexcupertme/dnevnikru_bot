@@ -24,5 +24,6 @@ jobs:
         with:
           host: ${{ secrets.HOST }} # uses secrets stored in the Secrets tab
           username: ${{ secrets.USERNAME }}
-          ssh-private-key: ${{ secrets.SSH_SECRET_KEY }}
+          key: ${{ secrets.SSH_SECRET_KEY }}
+          cipher: rsa
           script: sh deploy.sh
