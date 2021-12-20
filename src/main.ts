@@ -29,7 +29,6 @@ declare global {
 }
 
 console.log("Running!");
-
 const bot = BotService.getInstance();
 
 bot.use(
