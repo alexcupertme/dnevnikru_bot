@@ -43,6 +43,7 @@ bot.use(
 		storage: RedisService.getInstance().storage,
 	})
 );
+
 bot.use(BotService.getRouter());
 bot.use(accessCheckMiddleware(constants.accessToken));
 bot.catch((err) => {
