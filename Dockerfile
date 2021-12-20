@@ -1,15 +1,24 @@
-FROM mhart/alpine-node:latest
-WORKDIR /home/node/app
+#
+# ---- Base Node ----
+FROM mhart/alpine-node:latest as base
+RUN apk add nodejs-current tini
+WORKDIR /root/chat
 
-COPY package.json ./
-COPY tsconfig*.json ./
-RUN npm config set unsafe-perm true
+ENTRYPOINT ["/sbin/tini", "--"]
 
+COPY package.json .
+ 
+#
+# ---- Dependencies ----
+FROM base AS dependencies
 
-RUN npm install -g typescript
-RUN npm install
+RUN npm set progress=false && npm config set depth 0 && npm config set unsafe-perm true
+RUN npm install --only=production
+RUN cp -R node_modules prod_node_modules
 
-COPY ./src ./src
-RUN tsc
-
+#
+# ---- Release ----
+FROM base AS release
+COPY --from=dependencies /root/chat/prod_node_modules ./node_modules
+COPY . .
 CMD [ "node", "dist/main.js" ]

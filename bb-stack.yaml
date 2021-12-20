@@ -1,0 +1,44 @@
+version: "3"
+services:
+  app:
+    image: vzlomed/vzlomed:latest
+    networks:
+      - app_network
+    restart: always
+    depends_on:
+      - redis
+      - mongodb
+  redis:
+    image: redis:alpine
+    networks:
+      - app_network
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+      - .:/app
+    command:
+      - "redis-server"
+      - "--loglevel ${REDIS_LOGLEVEL:-warning}"
+      - "--save 120 1"
+      - "--maxmemory ${REDIS_MAXMEM:-50mb}"
+      - "--maxmemory-policy ${REDIS_POLICY:-noeviction}"
+      - "--requirepass ${REDIS_PWD}"
+  mongodb:
+    image: mongo:latest
+    networks:
+      - app_network
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PWD}
+      MONGO_INITDB_DATABASE: dnevnikru
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+networks:
+  app_network:
+volumes:
+  redis_data:
