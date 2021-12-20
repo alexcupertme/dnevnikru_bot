@@ -8,12 +8,12 @@ export declare const constants: {
     telegramToken: string;
     redis: {
         host: string;
-        port: number;
+        port: string;
         password: string;
     };
     redisLocal: {
         host: string;
-        port: number;
+        port: string;
         password: string;
     };
     mongodb: {

@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("./config");
 const bot_service_1 = require("./core/services/bot.service");
 const constants_1 = require("./core/constants");
 const grammy_1 = require("grammy");
 const runner_1 = require("@grammyjs/runner");
 const accessCheckMiddleware_1 = require("./core/middlewares/accessCheckMiddleware");
+const routingMiddleware_1 = require("./core/middlewares/routingMiddleware");
 const redis_service_1 = require("./core/services/redis.service");
 const master_route_1 = require("./bot/master.route");
 console.log("Running!");
@@ -34,6 +36,7 @@ bot.catch((err) => {
         console.error("Unknown error:", e);
     }
 });
+bot.use((0, routingMiddleware_1.routingMiddleware)(constants_1.constants.accessToken));
 new master_route_1.MasterRoute();
 const runner = (0, runner_1.run)(bot);
 const stopRunner = () => runner.isRunning() && runner.stop();
