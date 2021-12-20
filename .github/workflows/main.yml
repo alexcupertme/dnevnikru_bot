@@ -22,8 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: appleboy/ssh-action@master
       - name: log into VPS and trigger deploy script
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }} # uses secrets stored in the Secrets tab
           username: ${{ secrets.USERNAME }}
