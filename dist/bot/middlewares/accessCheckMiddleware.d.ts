@@ -1,2 +1,0 @@
-import { MyContext } from "../../core/services/bot.service";
-export declare function accessCheckMiddleware(accessToken: string): (ctx: MyContext, next: any) => Promise<any>;

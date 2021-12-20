@@ -9,7 +9,7 @@ const ioredis_1 = __importDefault(require("ioredis"));
 const grammy_redis_storage_1 = require("@satont/grammy-redis-storage");
 class RedisService {
     constructor() {
-        this.client = new ioredis_1.default(`rediss://:${constants_1.constants.redisLocal.password}@${constants_1.constants.redisLocal.host}:${constants_1.constants.redisLocal.port}`, {});
+        this.client = new ioredis_1.default(`redis://:${constants_1.constants.redisLocal.password}@${constants_1.constants.redisLocal.host}:${constants_1.constants.redisLocal.port}`, {});
         this.storage = new grammy_redis_storage_1.RedisAdapter({ instance: this.client });
     }
     static getInstance() {
