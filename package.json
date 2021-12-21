@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:local": "tsc && node ./dist/main.js",
-    "build": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker-compose up",
+    "build": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker-compose up -d",
     "deploy": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker push vzlomed/vzlomed && DOCKER_CONTEXT=remote docker-compose stop && DOCKER_CONTEXT=remote docker-compose rm -f && DOCKER_CONTEXT=remote docker-compose pull && DOCKER_CONTEXT=remote docker-compose up -d"
   },
   "author": "",
