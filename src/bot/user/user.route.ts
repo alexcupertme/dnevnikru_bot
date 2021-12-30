@@ -25,7 +25,9 @@ export function userCommand() {
 			await ctx.deleteMessage();
 		}
 		if (ctx.session.customData.toRemove) {
-			await ctx.api.deleteMessage(ctx.session.customData.toRemove.chatId, ctx.session.customData.toRemove.id);
+			try {
+				await ctx.api.deleteMessage(ctx.session.customData.toRemove.chatId, ctx.session.customData.toRemove.id);
+			} catch (e) {}
 			delete ctx.session.customData.toRemove;
 		}
 		if (isNaN(userIdInput)) {
