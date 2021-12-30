@@ -1,5 +1,9 @@
 echo "Deploying changes..."
 
+npm i -g typescript
+
+tsc
+
 # Build the image with the new changes
 docker build . -t vzlomed/vzlomed
 
