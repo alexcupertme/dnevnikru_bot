@@ -1,1 +1,0 @@
-{"version":3,"file":"routingMiddleware.js","sourceRoot":"","sources":["../../../src/core/middlewares/routingMiddleware.ts"],"names":[],"mappings":";;;AAEA,SAAgB,iBAAiB,CAAC,WAAmB;IACpD,OAAO,KAAK,WAAW,GAAc,EAAE,IAAS;QAG/C,GAAG,CAAC,OAAO,mCACP,GAAG,CAAC,OAAO,KACd,IAAI,EAAE,IAAI,CAAC,GAAG,EAAE,GAChB,CAAC;QACF,MAAM,IAAI,EAAE,CAAC;IACd,CAAC,CAAC;AACH,CAAC;AAVD,8CAUC"}
