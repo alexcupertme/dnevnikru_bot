@@ -39,7 +39,7 @@ bot.use(
 			chatId: 0,
 			customData: {},
 		}),
-		storage: RedisService.getInstance().storage,
+		storage: RedisService.getInstance().botStorage,
 	})
 );
 
