@@ -1,19 +1,22 @@
 import { TUserFeed } from "../core/typings/response/feed.type";
 import { constants } from "../core/constants";
-import { Request } from "../core/services/request.service";
+import { DnevnikRuRequest } from "../core/services/dnevnikru_request.service";
 import { Response } from "got";
+import { TCachedResponse } from "../core/typings/cached_response.type";
 
-export class UserFeeds extends Request {
+export class UserFeeds extends DnevnikRuRequest {
 	constructor(accessToken: string) {
 		super(accessToken);
 	}
-	public async me(date: string, dateLimit?: string, childPersonId?: string | number): Promise<{ response: Response<any>; body: TUserFeed }> {
-		const req = await this.session.get(constants.apiUrl + "/users/me/feed", {
+	public async me(date: string, dateLimit?: string, childPersonId?: string | number): Promise<{ response: TCachedResponse; body: TUserFeed }> {
+		const req = await this.sendCached({
 			searchParams: {
 				date,
 				childPersonId,
 				dateLimit,
 			},
+			method: "GET",
+			url: constants.apiUrl + "/users/me/feed",
 		});
 		return {
 			response: req,

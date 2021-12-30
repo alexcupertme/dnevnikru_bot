@@ -1,14 +1,18 @@
 import { TThematicMark } from "../core/typings/response/marks.type";
 import { constants } from "../core/constants";
-import { Request } from "../core/services/request.service";
+import { DnevnikRuRequest } from "../core/services/dnevnikru_request.service";
 import { Response } from "got";
+import { TCachedResponse } from "../core/typings/cached_response.type";
 
-export class ThematicMarks extends Request {
+export class ThematicMarks extends DnevnikRuRequest {
 	constructor(accessToken: string) {
 		super(accessToken);
 	}
-	public async mark(markId: string | number): Promise<{ response: Response<any>; body: TThematicMark }> {
-		const req = await this.session.get(constants.apiUrl + `/thematic-marks/${markId}`);
+	public async mark(markId: string | number): Promise<{ response: TCachedResponse; body: TThematicMark }> {
+		const req = await this.sendCached({
+			method: "GET",
+			url: constants.apiUrl + `/thematic-marks/${markId}`,
+		});
 		return {
 			response: req,
 			body: JSON.parse(req.body),
@@ -21,8 +25,11 @@ export class ThematicMarks extends Request {
 		subjectId: string | number,
 		from: string,
 		to: string
-	): Promise<{ response: Response<any>; body: TThematicMark[] }> {
-		const req = await this.session.get(constants.apiUrl + `/persons/${personId}/edu-groups/${eduGroup}/subjects/${subjectId}/thematic-marks/${from}/${to}`);
+	): Promise<{ response: TCachedResponse; body: TThematicMark[] }> {
+		const req = await this.sendCached({
+			method: "GET",
+			url: constants.apiUrl + `/persons/${personId}/edu-groups/${eduGroup}/subjects/${subjectId}/thematic-marks/${from}/${to}`,
+		});
 		return {
 			response: req,
 			body: JSON.parse(req.body),
@@ -35,8 +42,11 @@ export class ThematicMarks extends Request {
 		subjectId: string | number,
 		from: string,
 		to: string
-	): Promise<{ response: Response<any>; body: TThematicMark[] }> {
-		const req = await this.session.get(constants.apiUrl + `/persons/${personId}/edu-groups/${eduGroup}/subjects/${subjectId}/thematic-marks/${from}/${to}`);
+	): Promise<{ response: TCachedResponse; body: TThematicMark[] }> {
+		const req = await this.sendCached({
+			method: "GET",
+			url: constants.apiUrl + `/persons/${personId}/edu-groups/${eduGroup}/subjects/${subjectId}/thematic-marks/${from}/${to}`,
+		});
 		return {
 			response: req,
 			body: JSON.parse(req.body),

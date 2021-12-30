@@ -1,6 +1,6 @@
-import { Request } from "../core/services/request.service";
+import { DnevnikRuRequest } from "../core/services/dnevnikru_request.service";
 
-export class Auth extends Request {
+export class Auth extends DnevnikRuRequest {
 	constructor(accessToken: string) {
 		super(accessToken);
 	}

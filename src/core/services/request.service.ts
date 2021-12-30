@@ -1,35 +1,21 @@
 import got, { Got } from "got";
-import { constants } from "../constants";
 
 export class Request {
-	protected accessToken: string;
 	protected session: Got;
 
-	constructor(accessToken: string = "") {
+	constructor() {
 		this.session = this.makeSession();
-		this.accessToken = accessToken;
 	}
 
 	public makeSession(): Got {
 		const session = got.extend({
 			headers: {
-				"Access-Token": constants.accessToken,
 				"Accept-Encoding": "gzip, deflate, br",
+				"User-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
 				Connection: "keep-alive",
 			},
 			throwHttpErrors: false,
 			parseJson: (text) => JSON.parse(text),
-			hooks: {
-				afterResponse: [
-					// (response, retryWithMergedOptions) => {
-					// 	if (response.statusCode === 401) {
-					// 		response.body = "Unauthorized";
-					// 		return response;
-					// 	}
-					// 	return response;
-					// },
-				],
-			},
 			allowGetBody: true,
 		});
 

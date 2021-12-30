@@ -12,3 +12,4 @@ export * from "./thematic_marks";
 export * from "./userfeeds";
 export * from "./users";
 export * from "./homeworks";
+export * from "./check_access";
