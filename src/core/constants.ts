@@ -2,7 +2,7 @@ export const constants = {
 	apiUrl: "https://api.dnevnik.ru/v2.0",
 	baseUrl: "https://dnevnik.ru/",
 	loginUrl: "https://login.dnevnik.ru/login/",
-	accessToken: "tJAj6mELh2ZRo9WrNSatWmXxpxIjvkGf",
+	accessToken: "3hu5VRZacLn8uHTOpG7PBS5F5drdPBWO",
 	personId: 1000010493564,
 	eduGroup: 1847814077665489232,
 	telegramToken: process.env.TELEGRAM_TOKEN,
