@@ -1,6 +1,6 @@
 echo "Deploying changes..."
 
-npm i -g typescript
+sudo npm i -g typescript
 
 tsc
 
