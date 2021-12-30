@@ -4,9 +4,9 @@ name: Deploy
 on:
   # Triggers the workflow on push or pull request events but only for the live branch
   push:
-    branches: [ live ]
+    branches: [live]
   pull_request:
-    branches: [ live ]
+    branches: [live]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: log into VPS and trigger deploy script
@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_SECRET_KEY }}
           cipher: rsa
-          script: cd dnevnikru_bot && sh deploy.sh
+          script: cd dnevnikru_bot && git checkout live && git pull && sh deploy.sh

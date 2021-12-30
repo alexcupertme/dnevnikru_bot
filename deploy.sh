@@ -1,8 +1,4 @@
 echo "Deploying changes..."
-# Pull changes from the live branch
-git checkout live
-
-git pull
 
 # Build the image with the new changes
 docker build . -t vzlomed/vzlomed
