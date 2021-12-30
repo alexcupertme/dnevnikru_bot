@@ -1,13 +1,11 @@
 import { constants } from "../constants";
 import Redis from "ioredis";
-import fs from "fs";
-import path from "path";
 import { RedisAdapter } from "@satont/grammy-redis-storage";
-import { MyContext, MyUserData } from "./bot.service";
+import { MyUserData } from "./bot.service";
 
 export class RedisService {
 	readonly client: Redis.Redis;
-	readonly storage: RedisAdapter<MyUserData>;
+	readonly botStorage: RedisAdapter<MyUserData>;
 	private static instance: RedisService;
 
 	private constructor() {
@@ -16,7 +14,8 @@ export class RedisService {
 			// 	ca: fs.readFileSync(path.resolve(__dirname, "ca.pem")),
 			// },
 		});
-		this.storage = new RedisAdapter<MyUserData>({ instance: this.client });
+
+		this.botStorage = new RedisAdapter<MyUserData>({ instance: this.client });
 	}
 
 	public static getInstance(): RedisService {
@@ -36,5 +35,9 @@ export class RedisService {
 
 	async delCache(key: any) {
 		return await this.client.del(key);
+	}
+
+	async existsCache(key: any) {
+		return await this.client.exists(key);
 	}
 }
