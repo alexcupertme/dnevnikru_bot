@@ -1,5 +1,5 @@
 import { InlineKeyboard } from "grammy";
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 
 export function helpRoute() {
 	const bot = BotService.getInstance();

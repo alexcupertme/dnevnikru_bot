@@ -1,6 +1,6 @@
 import { TThematicMark } from "../core/typings/response/marks.type";
 import { constants } from "../core/constants";
-import { DnevnikRuRequest } from "../core/services/dnevnikru_request.service";
+import { DnevnikRuRequest } from "../core/services/request/dnevnikru_request.service";
 import { Response } from "got";
 import { TCachedResponse } from "../core/typings/cached_response.type";
 

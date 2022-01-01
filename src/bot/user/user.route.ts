@@ -1,5 +1,5 @@
 import { constants } from "../../core/constants";
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 import { Context, Users } from "../../api";
 import { InlineKeyboard } from "grammy";
 import { Message } from "@grammyjs/types";

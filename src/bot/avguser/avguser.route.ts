@@ -1,4 +1,4 @@
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 import { UserFeeds, ReportingPeriods, Marks, Context, EduGroups } from "../../api";
 import { constants } from "../../core/constants";
 import { InlineKeyboard } from "grammy";
@@ -25,7 +25,7 @@ export function averageUserFunction() {
 		ctx.session.route = "";
 		const personIdInput = parseInt(ctx.msg?.text ?? "", 10);
 		if (ctx.msg) {
-			ctx.deleteMessage();
+			await ctx.deleteMessage();
 		}
 		if (ctx.session.customData.toRemove) {
 			try {
@@ -48,7 +48,7 @@ export function averageUserFunction() {
 		});
 		if (found) {
 			const markRes = await marks.avgMark(periodRes.body[0].id_str, personIdInput);
-			ctx.api.editMessageText(
+			await ctx.api.editMessageText(
 				msg.chat.id,
 				msg.message_id,
 				`Средний балл пользователя  <code>${found.person.shortName}</code> (ID:  <code>${personIdInput}</code>) за текущий ${periodRes.body[0].type}:  <code>${markRes.body}</code>`,

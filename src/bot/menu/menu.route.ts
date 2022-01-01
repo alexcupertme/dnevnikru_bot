@@ -1,6 +1,6 @@
 import { unixTimestampConverter } from "../../core/utils/unixTimestampConverter";
 import { InlineKeyboard } from "grammy";
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 
 export function menuRoute() {
 	const bot = BotService.getInstance();

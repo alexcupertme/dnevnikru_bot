@@ -1,5 +1,5 @@
 import { constants } from "../../core/constants";
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 import { Context, EduGroups, Persons, Homeworks, Users } from "../../api";
 import { unixTimestampConverter } from "../../core/utils/unixTimestampConverter";
 import { InlineKeyboard } from "grammy";

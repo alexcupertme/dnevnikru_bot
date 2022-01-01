@@ -1,4 +1,4 @@
-import { BotService } from "../../core/services/bot.service";
+import { BotService } from "../../core/services/bot/bot.service";
 import { UserFeeds, ReportingPeriods, Marks, Context } from "../../api";
 import { constants } from "../../core/constants";
 import { InlineKeyboard } from "grammy";

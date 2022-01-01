@@ -1,7 +1,7 @@
 import { TUser } from "../core/typings/response/user.type";
 import { constants } from "../core/constants";
 // import { userModel } from "../core/schemas/user.schema";
-import { DnevnikRuRequest } from "../core/services/dnevnikru_request.service";
+import { DnevnikRuRequest } from "../core/services/request/dnevnikru_request.service";
 import { Response } from "got";
 import { TCachedResponse } from "../core/typings/cached_response.type";
 
