@@ -1,4 +1,4 @@
-import { MyContext } from "../services/bot.service";
+import { MyContext } from "../services/bot/bot.service";
 import { CheckAccess } from "../../api";
 import { InlineKeyboard } from "grammy";
 

@@ -1,12 +1,12 @@
-import { constants } from "../constants";
+import { constants } from "../../constants";
 import Redis from "ioredis";
 import { RedisAdapter } from "@satont/grammy-redis-storage";
-import { MyUserData } from "./bot.service";
+import { MyUserData } from "../bot/bot.service";
 
 export class RedisService {
 	readonly client: Redis.Redis;
 	readonly botStorage: RedisAdapter<MyUserData>;
-	private static instance: RedisService;
+	protected static instance: RedisService;
 
 	private constructor() {
 		this.client = new Redis(`redis://:${constants.redisLocal.password}@${constants.redisLocal.host}:${constants.redisLocal.port}`, {
@@ -39,5 +39,9 @@ export class RedisService {
 
 	async existsCache(key: any) {
 		return await this.client.exists(key);
+	}
+
+	async incrCache(key: any) {
+		return await this.client.incr(key);
 	}
 }

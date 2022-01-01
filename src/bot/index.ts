@@ -8,3 +8,5 @@ export * from "./todayhomework/todayhomework.route";
 export * from "./todayschedule/todayschedule.route";
 export * from "./user/user.route";
 export * from "./menu/menu.route";
+export * from "./about/about.route";
+export * from "./auth/auth.route";

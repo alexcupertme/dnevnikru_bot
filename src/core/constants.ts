@@ -20,6 +20,7 @@ export const constants = {
 		username: process.env.MONGO_USER,
 		password: process.env.MONGO_PWD,
 		host: process.env.MONGO_HOST,
-		db_name: "dnevnikru",
+		port: process.env.MONGO_PORT,
+		db_name: process.env.MONGO_DB_ACCESS,
 	},
 };

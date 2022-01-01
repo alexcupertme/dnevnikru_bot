@@ -1,19 +1,23 @@
 import "./config";
-import { BotService } from "./core/services/bot.service";
+import { BotService } from "./core/services/bot/bot.service";
 import { constants } from "./core/constants";
 import { GrammyError, HttpError, session } from "grammy";
 import { run } from "@grammyjs/runner";
 import { accessCheckMiddleware } from "./core/middlewares/accessCheckMiddleware";
 import { routingMiddleware } from "./core/middlewares/routingMiddleware";
-import { RedisService } from "./core/services/redis.service";
+import { RedisService } from "./core/services/redis/redis.service";
 import { MasterRoute } from "./bot/master.route";
+import { DatabaseService } from "./core/services/database/database.service";
 
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
 			MONGO_USER: string;
 			MONGO_PWD: string;
+			MONGO_DB_ACCESS: string;
+
 			MONGO_HOST: string;
+			MONGO_PORT: string;
 
 			REDIS_PWD: string;
 			REDIS_HOST: string;
@@ -27,10 +31,10 @@ declare global {
 		}
 	}
 }
+let db = new DatabaseService();
+db.connect();
 
-console.log("Running!");
 const bot = BotService.getInstance();
-
 bot.use(
 	session({
 		initial: () => ({
@@ -61,7 +65,7 @@ bot.use(routingMiddleware(constants.accessToken));
 new MasterRoute();
 
 const runner = run(bot);
-
+console.log("Running!");
 // Stopping the bot when Node process
 // is about to be terminated
 const stopRunner = () => runner.isRunning() && runner.stop();

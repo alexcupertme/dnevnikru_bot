@@ -1,4 +1,4 @@
-import { MyContext } from "../services/bot.service";
+import { MyContext } from "../services/bot/bot.service";
 
 export function routingMiddleware(accessToken: string) {
 	return async function (ctx: MyContext, next: any) {

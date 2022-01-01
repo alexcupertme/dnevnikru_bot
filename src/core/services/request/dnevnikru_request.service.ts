@@ -1,9 +1,9 @@
-import { createHashSum } from "../../core/utils/createHashSum";
-import { RedisService } from "./redis.service";
+import { createHashSum } from "../../utils/createHashSum";
+import { RedisService } from "../redis/redis.service";
 import { Request } from "./request.service";
 import stringify from "json-stringify-safe";
-import { fromBase64, toBase64 } from "../../core/utils/base64";
-import { TCachedResponse } from "../../core/typings/cached_response.type";
+import { fromBase64, toBase64 } from "../../utils/base64";
+import { TCachedResponse } from "../../typings/cached_response.type";
 import { OptionsOfTextResponseBody, Response } from "got/dist/source";
 
 export class DnevnikRuRequest extends Request {
@@ -22,7 +22,6 @@ export class DnevnikRuRequest extends Request {
 			const cachedResponse = await this.redis.getCache(`cacheable-request:${options.method}:${createHashSum(this.accessToken)}:${options.url}`);
 			const response: TCachedResponse = JSON.parse(cachedResponse);
 			response.body = JSON.parse(fromBase64(response.body));
-			console.log(response);
 			return response;
 		}
 		return null;
@@ -54,7 +53,17 @@ export class DnevnikRuRequest extends Request {
 				options: response.request.options,
 			},
 		};
-		await this.redis.setCache(`cacheable-request:${options.method}:${createHashSum(this.accessToken)}:${response.url}`, stringify(responseForCaching), 600);
+		const counterReq = `cacheable-request:COUNTER:${this.accessToken}`;
+		const counter = await this.redis.getCache(counterReq);
+		if (counter && parseInt(counter) < 50) {
+			await this.redis.incrCache(counterReq);
+			await this.redis.setCache(`cacheable-request:${options.method}:${createHashSum(this.accessToken)}:${response.url}`, stringify(responseForCaching), 600);
+		} else if (!counter) {
+			await this.redis.setCache(counterReq, 1, 1500);
+			await this.redis.setCache(`cacheable-request:${options.method}:${createHashSum(this.accessToken)}:${response.url}`, stringify(responseForCaching), 600);
+		} else if (parseInt(counter) > 50) {
+			return;
+		}
 	}
 	async sendCached(options?: OptionsOfTextResponseBody): Promise<TCachedResponse | Response<any>> {
 		const cachedRes = await this._beforeHook(options);

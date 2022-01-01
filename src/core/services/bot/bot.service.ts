@@ -1,6 +1,6 @@
 import { Context, SessionFlavor, Bot as GrammYBot, Bot } from "grammy";
 import { Router } from "@grammyjs/router";
-import { constants } from "../../core/constants";
+import { constants } from "../../constants";
 
 export interface MyUserData {
 	route: string;

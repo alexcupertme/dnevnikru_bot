@@ -1,9 +1,22 @@
-import { averageMeFunction, averageUserFunction, menuRoute, classmatesCommand, helpRoute, meCommand, startCommand, todayHomeworkCommand, todayScheduleCommand, userCommand } from ".";
-import { aboutRoute } from "./about/about.route";
+import {
+	averageMeFunction,
+	averageUserFunction,
+	menuRoute,
+	classmatesCommand,
+	helpRoute,
+	meCommand,
+	startCommand,
+	todayHomeworkCommand,
+	todayScheduleCommand,
+	userCommand,
+	authHandler,
+	aboutRoute,
+} from ".";
 
 export class MasterRoute {
 	constructor() {
 		helpRoute();
+		authHandler();
 		todayHomeworkCommand();
 		todayScheduleCommand();
 		meCommand();
