@@ -1,31 +1,31 @@
 {
-  "name": "dnevnikru_bot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:local": "tsc && node ./dist/main.js",
-    "build": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker-compose up -d",
-    "deploy": "tsc && docker build . -t vzlomed/vzlomed && docker image prune -f && docker push vzlomed/vzlomed && DOCKER_CONTEXT=remote docker-compose stop && DOCKER_CONTEXT=remote docker-compose rm -f && DOCKER_CONTEXT=remote docker-compose pull && DOCKER_CONTEXT=remote docker-compose up -d"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@grammyjs/router": "^1.1.1",
-    "@grammyjs/runner": "^1.0.3",
-    "@satont/grammy-redis-storage": "^1.1.0",
-    "dotenv": "^10.0.0",
-    "got": "^11.8.2",
-    "grammy": "^1.5.0",
-    "ioredis": "^4.28.2",
-    "json-stringify-safe": "^5.0.1",
-    "md5": "^2.3.0",
-    "mongoose": "^6.0.12"
-  },
-  "devDependencies": {
-    "@types/ioredis": "^4.28.2",
-    "@types/json-stringify-safe": "^5.0.0",
-    "@types/md5": "^2.3.1"
-  }
+	"name": "dnevnikru_bot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:local": "tsc && node ./dist/main.js",
+		"build": "docker build . -t vzlomed/vzlomed && docker image prune -f && docker-compose up -d",
+		"deploy": "docker build . -t vzlomed/vzlomed && docker image prune -f && docker push vzlomed/vzlomed && DOCKER_CONTEXT=remote docker-compose stop && DOCKER_CONTEXT=remote docker-compose rm -f && DOCKER_CONTEXT=remote docker-compose pull && DOCKER_CONTEXT=remote docker-compose up -d"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@grammyjs/router": "^1.1.1",
+		"@grammyjs/runner": "^1.0.3",
+		"@satont/grammy-redis-storage": "^1.1.0",
+		"dotenv": "^10.0.0",
+		"got": "^11.8.2",
+		"grammy": "^1.5.0",
+		"ioredis": "^4.28.2",
+		"json-stringify-safe": "^5.0.1",
+		"md5": "^2.3.0",
+		"mongoose": "^6.0.12"
+	},
+	"devDependencies": {
+		"@types/ioredis": "^4.28.2",
+		"@types/json-stringify-safe": "^5.0.0",
+		"@types/md5": "^2.3.1"
+	}
 }

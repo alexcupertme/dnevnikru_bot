@@ -13,6 +13,7 @@ COPY package.json .
 FROM base AS dependencies
 
 RUN npm set progress=false && npm config set depth 0 && npm config set unsafe-perm true
+RUN npm install -g typescript
 RUN npm install --only=production
 RUN cp -R node_modules prod_node_modules
 
@@ -22,4 +23,6 @@ RUN cp -R node_modules prod_node_modules
 FROM base AS release
 COPY --from=dependencies /root/chat/prod_node_modules ./node_modules
 COPY . .
+RUN tsc
+
 CMD [ "node", "dist/main.js" ]
