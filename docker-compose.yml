@@ -25,20 +25,23 @@ services:
       - "--maxmemory ${REDIS_MAXMEM:-50mb}"
       - "--maxmemory-policy ${REDIS_POLICY:-noeviction}"
       - "--requirepass ${REDIS_PWD}"
-  mongodb:
-    image: mongo:latest
+  mongo:
+    image: bitnami/mongodb:latest
     networks:
       - app_network
     restart: unless-stopped
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PWD}
-      MONGO_INITDB_DATABASE: dnevnikru
+      MONGODB_ROOT_PASSWORD: ${MONGO_ROOT_PWD}
+      MONGODB_USERNAME: ${MONGO_USER}
+      MONGODB_PASSWORD: ${MONGO_PWD}
+      MONGODB_DATABASE: ${MONGO_DB_ACCESS}
+      MONGODB_PORT_NUMBER: ${MONGO_PORT}
     ports:
       - 27017:27017
     volumes:
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./data/mongodb:/data/db
 networks:
   app_network:
 volumes:
   redis_data:
+  mongo:
