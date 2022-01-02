@@ -65,7 +65,7 @@ bot.use(routingMiddleware(constants.accessToken));
 new MasterRoute();
 
 const runner = run(bot);
-console.log("Running!");
+console.log("Started!");
 // Stopping the bot when Node process
 // is about to be terminated
 const stopRunner = () => runner.isRunning() && runner.stop();
