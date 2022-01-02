@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_SECRET_KEY }}
           cipher: rsa
-          script: cd dnevnikru_bot && git checkout live && git pull && sh deploy.sh
+          script: cd dnevnikru_bot && git checkout live && git pull && docker build . -t vzlomed/vzlomed && docker-compose down && docker-compose up -d
